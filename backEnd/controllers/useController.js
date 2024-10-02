@@ -32,17 +32,22 @@ const login=asyncHandler(async(req,res)=>{
     const{email,password}=req.body;
 
     const existEmail=await User.findOne({email});
-    
     if(!existEmail)
     {
-
        return res.status(400).json({
         message:"No such Email exists"
        })
     }
 
     if(existEmail){
-        const isValidPassword=bcrypt.compare(password,existEmail.password)
+        const isValidPassword= await bcrypt.compare(password,existEmail.password)
+        console.log("is?",isValidPassword);
+
+        if(!isValidPassword){
+            res.status(401).json({message:"Invalid credentials"})
+            return
+        }
+        
         if(isValidPassword){
             generateToken(res,existEmail._id)
 
@@ -100,6 +105,8 @@ const updateCurrentProfile=asyncHandler(async(req,res)=>{
         }
 
         const updatedUser= await  user.save();
+        console.log(updatedUser);
+        
 
         res.json({
             id:updatedUser._id,

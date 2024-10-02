@@ -1,6 +1,6 @@
 import {apiSlice} from "./apiSlice"
 import { USERS_URL } from "../constance"
-import Register from "../../pages/Auth/Register";
+// import Register from "../../pages/Auth/Register";
 
 export const userApiSlice=apiSlice.injectEndpoints({
     endpoints:(builder)=>(
@@ -24,8 +24,15 @@ export const userApiSlice=apiSlice.injectEndpoints({
                 method:"POST",
                 body:data
             })
+         }),
+         profile:builder.mutation({
+            query:(data)=>({
+                url:`${USERS_URL}/profile`,
+                method:"PUT",
+                body:data
+            })
          })
     }),
 })
  
-export const {useLoginMutation,useLogoutMutation,useRegisterMutation}=userApiSlice;
+export const {useLoginMutation,useLogoutMutation,useRegisterMutation,useProfileMutation}=userApiSlice;

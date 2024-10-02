@@ -99,7 +99,7 @@ const Navigation=()=>{
                 </button>
                 {dropDownOpen&&userInfo&&(
                     <ul
-                    className={`absolute right-0 mt-2  space-y-2 bg-white text-gray-600 ${!userInfo.isAdmin?"-top-20 mr-12":"-top-80 mr-5"}`}
+                    className={`absolute right-0 mt-2  space-y-2 bg-white text-gray-600 ${!userInfo.isAdmin?"-top-20 mr-[10%]":"-top-80 mr-[10%]"}`}
                     >
                     {userInfo.isAdmin &&(
                         <>
@@ -131,7 +131,7 @@ const Navigation=()=>{
                         </>
                     )}
                      <li>
-                            <Link to={"admin/profile"} className="block px-4 py-2 hover: bg-gray-100">
+                            <Link to={"/profile"} className="block px-4 py-2 hover: bg-gray-100">
                             Profile
                             </Link>
                         </li>
